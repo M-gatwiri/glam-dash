@@ -64,52 +64,37 @@
     }
   }
 
-  function background() {
-    const g = ctx.createLinearGradient(0, 0, 0, 620);
-    g.addColorStop(0, '#fff2f8');
-    g.addColorStop(1, '#f3e9ff');
+function background() {
+  ctx.fillStyle = '#fff8fc';
+  ctx.fillRect(0, 0, 720, 620);
+  ctx.fillStyle = '#fff3f9';
+  ctx.beginPath();
+  ctx.moveTo(130, 0);
+  ctx.lineTo(590, 0);
+  ctx.lineTo(660, 620);
+  ctx.lineTo(60, 620);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = '#f2cfe2';
+  ctx.lineWidth = 3;
+  ctx.setLineDash([15, 18]);
+  ctx.beginPath();
+  ctx.moveTo(275, 0);
+  ctx.lineTo(250, 620);
+  ctx.moveTo(445, 0);
+  ctx.lineTo(470, 620);
+  ctx.stroke();
+  ctx.setLineDash([]);
 
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, 720, 620);
+  for (let i = 0; i < 12; i++) {
+    const y = (i * 67 + state.elapsed * 18) % 650 - 20;
+    const x = i % 2 === 0
+      ? 40 + (i % 3) * 15
+      : 650 + (i % 3) * 12;
 
-    ctx.fillStyle = '#fff9fc';
-    ctx.beginPath();
-    ctx.moveTo(90, 0);
-    ctx.lineTo(630, 0);
-    ctx.lineTo(710, 620);
-    ctx.lineTo(10, 620);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = '#ffeff7';
-    ctx.beginPath();
-    ctx.moveTo(130, 0);
-    ctx.lineTo(590, 0);
-    ctx.lineTo(660, 620);
-    ctx.lineTo(60, 620);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.strokeStyle = '#f2cfe2';
-    ctx.lineWidth = 3;
-    ctx.setLineDash([15, 18]);
-    ctx.beginPath();
-    ctx.moveTo(275, 0);
-    ctx.lineTo(250, 620);
-    ctx.moveTo(445, 0);
-    ctx.lineTo(470, 620);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    for (let i = 0; i < 12; i++) {
-      const y = (i * 67 + state.elapsed * 18) % 650 - 20;
-      const x = i % 2 === 0
-        ? 40 + (i % 3) * 15
-        : 650 + (i % 3) * 12;
-
-      star(x, y, 5 + i % 3, '#e4b3d4', 0.75);
-    }
+    star(x, y, 5 + i % 3, '#e4b3d4', 0.75);
   }
+}
 
   function gem(x, y, size = 16) {
     ctx.save();
@@ -119,7 +104,6 @@
     ctx.fillStyle = '#ad8de9';
     ctx.strokeStyle = '#8664ce';
     ctx.lineWidth = 2;
-
     ctx.beginPath();
     ctx.moveTo(0, -size);
     ctx.lineTo(size * 0.8, -size * 0.25);
@@ -130,14 +114,12 @@
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
-
     ctx.shadowBlur = 0;
     ctx.strokeStyle = '#f8edff';
     ctx.beginPath();
     ctx.moveTo(0, -size + 4);
     ctx.lineTo(0, size - 4);
     ctx.stroke();
-
     ctx.restore();
   }
 
@@ -146,7 +128,6 @@
     ctx.translate(x, y);
     ctx.strokeStyle = '#c24d91';
     ctx.lineWidth = 4;
-
     ctx.beginPath();
     ctx.arc(0, -12, 13, Math.PI, 0);
     ctx.stroke();
@@ -161,7 +142,6 @@
     ctx.beginPath();
     ctx.arc(0, 6, 4, 0, Math.PI * 2);
     ctx.fill();
-
     ctx.restore();
   }
 
